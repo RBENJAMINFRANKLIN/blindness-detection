@@ -13,3 +13,10 @@ The app will start using the following commands:
 cd src
 python start_app.py
 ```
+
+Additional options
+
+```
+cd src
+python start_app.py --client-port <client-port> --server-port <server-port>
+```
