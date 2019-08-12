@@ -18,8 +18,8 @@ def cleanup():
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--client-port", nargs=1, help="specify client port", type=int, default=8000)
-	parser.add_argument("--server-port", nargs=1, help="specify server_port", type=int, default=5000)
+	parser.add_argument("--client-port", nargs=1, help="specify client port", type=int, default=[8000])
+	parser.add_argument("--server-port", nargs=1, help="specify server_port", type=int, default=[5000])
 	args = parser.parse_args()
 	client_port = args.client_port[0]
 	server_port = args.server_port[0]

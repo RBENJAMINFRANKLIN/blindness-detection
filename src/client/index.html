@@ -1,12 +1,44 @@
 <html>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/custom.css" />
-	<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<head>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/custom.css" />
+		<script
+	  src="https://code.jquery.com/jquery-3.4.1.min.js"
+	  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	  crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<script src="js/upload.js"></script>
+	</head>
 	<body>
+		<div class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Status</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div id="result" class="modal-body">
+		        <center><i id="loading" class="fa fa-spinner fa-spin fa-5x text-primary"></i></center>
+		        <div id="status-block">
+		        	<div id="status">
+		        	</div>
+		        	<button class="btn btn-primary" id="click-details">Click for more details</button>
+		        </div>
+		        <div id="gradcam-block">
+		        	<div id="gradcam">
+		        	</div>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		<div class="jumbotron">
 				<img src="images/header.png" class="img-fluid rounded-circle" />
 				<h1 align="center">Detecting Blindness</h1>
@@ -54,14 +86,17 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row" id="">
 					<div class="col-md-12">
 						<h2>Upload</h2>
 						<hr />
 						<div class="row">
 							<div class="col-md-4"></div>
 							<div class="col-md-4">
-								<center><button type="button" class="form-control btn btn-primary"> Upload a file</button>
+								<form id="uploadAction" enctype="multipart/form-data" method="post">
+									<input type="file" name="file" id="fileInput" />
+									<center><button id="uploadButton" type="button" class="form-control btn btn-primary"> Upload</button></center>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -79,10 +114,11 @@
 		       			<center><h3>Amar Chheda</h3></center>
 		       		</div>
 		       		<div class="col-md-4">
-		       			<center><h3>Aswani Gollakotta</h3></center>
+		       			<center><h3>Aswani Gollakota</h3></center>
 		       		</div>
 	       		</div>
 	      	</div>
 	    </footer>
 	</body>
+	
 </html>
