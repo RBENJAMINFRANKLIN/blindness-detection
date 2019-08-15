@@ -13,10 +13,11 @@ $(document).ready(function() {
         xhr.onreadystatechange = function() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 results = JSON.parse(xhr.responseText);
+                console.log(results);
                 if(results["output"] == 0) {
-                    content = "<i class='fa fa-check text-success'></i> Normal"
+                    content = "<p class='p'>Result: <i class='fa fa-check text-success'></i> Normal</p>"
                 } else {
-                    content += "<i class='fa fa-times text-danger'</i> Abnormal"
+                    content = "<p class='p'>Result: <i class='fa fa-times text-danger'</i> Abnormal</p>"
                 }
                 setTimeout(function(){
                     $("#loading").hide();
