@@ -6,30 +6,27 @@ from torch import no_grad
 from numpy import argmax
 
 class AlexNetModel(object):
-	def __init__(self, model_path):
-		self.model = load(model_path)
-		self.model.eval()
+    def __init__(self, model_path):
+        self.model = load(model_path)
+        self.model.eval()
 
-	def predict(self, image_path):
-		# read the image as grayscale
-		print("Resizing...")
-		img = cv2.imread(image_path, 0)
-		img = cv2.resize(img, (224, 224))
+    def predict(self, image_path):
+        # read the image as grayscale 
+        img = cv2.imread(image_path, 0)
+        img = cv2.resize(img, (224, 224))
 
-		print("Transforming...")
-		trans = transforms.Compose([transforms.ToTensor(), transforms.Normalize(
+        
+        trans = transforms.Compose([transforms.ToTensor(), transforms.Normalize(
                                                               mean=[0.456],
                                                               std= [0.225])])
-		img = trans(img)
+        img = trans(img)
 
-		print("Predicting...")
-		out = self.model(img.unsqueeze_(0))
+        out = self.model(img.unsqueeze_(0))
 
-		print("Prediction completed successfully")
-		y_pred = out.data.max(1, keepdim=True)[1].int()
-		out.detach()
-		return y_pred.item()
+        y_pred = out.data.max(1, keepdim=True)[1].int()
+        out.detach()
+        return y_pred.item()
 
-	def __str__(self):
-		return str(self.model)
+    def __str__(self):
+        return str(self.model)
 
