@@ -5,6 +5,7 @@ from sys import argv
 from models.alexnet import AlexNetModel
 import werkzeug
 import time
+from os import remove
 
 app = Flask(__name__)
 cors = CORS(app, resources={"*": {"origins": "*"}})
@@ -15,25 +16,28 @@ class Blindness(Resource):
         return {'module' : 'Blindness detection', 'version': '1.0'}
 
     def post(self):
-    	parse = reqparse.RequestParser()
-    	parse.add_argument('file', type=werkzeug.datastructures.FileStorage, location='files')
-    	args = parse.parse_args()
+        parse = reqparse.RequestParser()
+        parse.add_argument('file', type=werkzeug.datastructures.FileStorage, location='files')
+        args = parse.parse_args()
 
-    	imageFile = args['file']
-    	
-    	# generate a name
-    	fileName = "input_" + str(int(time.time())) + ".png"
+        imageFile = args['file']
+        
+        # generate a name
+        fileName = "input_" + str(int(time.time())) + ".png"
 
-    	# generate file path
-    	filePath = "queue/" + fileName
-    	# save the file
-    	imageFile.save(filePath)
-    	
-    	output = alexnet_model.predict(filePath)
+        # generate file path
+        filePath = "queue/" + fileName
+        # save the file
+        imageFile.save(filePath)
+        
+        output = alexnet_model.predict(filePath)
 
-    	return {"output": output}
+        # processing done...now remove the file
+        remove(filePath)
+        
+        return {"output": output}
 
 api.add_resource(Blindness, '/')
 
 if __name__ == '__main__':
-	app.run(debug=True, port=argv[1])
+    app.run(debug=True, port=argv[1])
